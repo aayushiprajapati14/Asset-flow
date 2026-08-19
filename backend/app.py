@@ -1,33 +1,45 @@
-from flask import Flask, request,render_template
+from flask import Flask, redirect, request,render_template,url_for, flash
 import sqlite3
 from database import get_connection
 
+
 app = Flask(__name__)
+app.secret_key = "your_secret_key"
 
 @app.route("/")
 def home():
-     return render_template("login.html")
+     return render_template("landing.html")
+ 
+@app.route("/login")
+def login_page():
+
+    return render_template("login.html")
 
 @app.route("/login", methods=["POST"])
 def login():
     email = request.form["email"]
     password = request.form["password"]
 
-    conn = get_connection()
-    cursor = conn.cursor()
-
-    cursor.execute(
-        "SELECT * FROM Users WHERE Email=? AND Password=?",
-        (email, password)
+    conn = get_connection()# connects [ython to database opens the restro
+    cursor = conn.cursor() #executes sql we give waiter order
+ 
+    cursor.execute(  #we get the order
+        "SELECT * FROM Users WHERE Email=? AND Password=?", #select selects and * means select evrything FROM USERS TABLE 
+        (email, password) #whole line means show me eveything from users table where email and password matches with the ones enetered by usewr
     )
+   
+    user = cursor.fetchone()#the first matching line is sent to python
+   
+    conn.close() #closes database connectiopn
 
-    user = cursor.fetchone()
-    conn.close()
-
-    if user:
-        return render_template("dashboard_b.html")
+    if user: #if there is a matrching email and paswrd from user table opn dshbrd otherwise invalid 
+        return render_template("dashboard.html")
     else:
         return "Invalid Email or Password"
+    
+@app.route("/signup")
+def signup_page():
+    return render_template("signup.html")
     
 @app.route("/signup", methods=["POST"])
 def signup():
@@ -42,11 +54,19 @@ def signup():
         "INSERT INTO Users (Email, Password) VALUES (?, ?)",
         (email, password)  #adding a new user
     )
+    
+    existing_user = cursor.fetchone()
+
+    if existing_user:
+        flash("Email already registered. Please log in.", "danger")
+        return redirect(url_for("signup_page"))
 
     conn.commit()#storing the value
     conn.close()
+    
+    flash("Registration successful! Please log in to continue.", "success")
 
-    return "Registration succesful pls go back for login"
+    return redirect(url_for("login_page"))
 
 @app.route("/add_asset", methods=["POST"])
 def add_asset():

@@ -1,0 +1,85 @@
+<svg                                      
+    xmlns="http://www.w3.org/2000/svg"
+    width="220"
+    height="220"
+    viewBox="0 0 220 220"> 
+    <!--svg is the opening tag xmlns tells to follow svg rules width height is mentioned for logo and viewport means the cooordiante axis is amde weher are logo will be placed-->
+        
+        <g id="nodes">
+            <circle id = "top"
+            cx="110"   
+            cy="30"
+            r="6"
+            fill="#2E6F40"/>
+            <!--cx-centre xcordinate cy- centre ycoordinate which means our circle ka centre has coordinates 110,30 adn r is the radoius of circle -->
+            <circle id = "left-middle"
+            cx="80"   
+            cy="70"
+            r="6"
+            fill="#2E6F40"/>
+            <circle id = "right-middle"
+            cx="140"   
+            cy="70"
+            r="6"
+            fill="#2E6F40"/>
+            <circle id = "bottom-left"
+            cx="60"   
+            cy="110"
+            r="6"
+            fill="#2E6F40"/>
+            <circle id= "bottom-right"
+            cx="160"   
+            cy="110"
+            r="6"
+            fill="#2E6F40"/>
+        </g>
+        <g id="lines">
+            <line id = "first"
+                x1= "110"
+                y1 = "30"
+                x2= "80"
+                y2= "70"
+                stroke = "#2E6F40"
+                stroke-width = "3"
+                stroke-linecap = "round" /> 
+                <!--a line whose start point is x1 y1 and endpouint is y1 y2-->
+
+                <line id = "second"
+                x1= "80"
+                y1 = "70"
+                x2= "60"
+                y2= "110"
+                stroke = "#2E6F40"
+                stroke-width = "3"
+                stroke-linecap = "round" />
+
+                <line id ="third"
+                x1= "110"
+                y1 = "30"
+                x2= "140"
+                y2= "70"
+                stroke = "#2E6F40"
+                stroke-width = "3"
+
+                stroke-linecap = "round" />
+                <line id = "fourth"
+                x1= "140"
+                y1 = "70"
+                x2= "160"
+                y2= "110"
+                stroke = "#2E6F40"
+                stroke-width = "3"
+                stroke-linecap = "round" />
+                
+                <line id = "crossbar"
+                x1= "140"
+                y1 = "70"
+                x2= "80"
+                y2= "70"
+                stroke = "#2E6F40"
+                stroke-width = "3"
+                stroke-linecap = "round" />
+            </g>
+        
+
+</svg>

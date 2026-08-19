@@ -1,0 +1,305 @@
+
+body{
+    background: radial-gradient(
+       Circle at center,   /* FOR COLOR GRADING  */
+       #14532D 0%,
+        #134A2C 60%,
+        #111827 100%
+    );
+    display:flex ;
+    justify-content: center;
+    align-items: center;
+    font-family:'Poppins', sans-serif;
+}
+
+.login-card{
+    width: 440px;
+    background-color: #FAFAFA;
+    border-radius: 24px;
+    padding : 55px;
+    display:flex ;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    min-height:600px;
+    padding: 20px 60px 60px 60px;
+}
+
+.login-header{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.login-title{
+    font-weight: 700;
+}
+
+.login-subtitle{
+    color:#6B7280;
+    font-size:16px;
+}
+
+.form-login{
+    width:100%;
+    margin-top:35px;
+}
+
+label{
+    display:block;
+    font-size:15px;
+    font-weight:500;
+    margin-bottom:8px;
+    color:#374151;
+     margin-top: 6px;
+
+}
+
+input{
+    width:100%;
+    padding:14px 16px;
+    border:1px solid #D1D5DB;
+    border-radius:12px;
+
+    font-size:16px;
+
+    transition:0.3s;
+}
+
+input:focus{
+    outline:none;
+    border-color:#22C55E;
+
+    box-shadow:0 0 0 4px rgba(34,197,94,0.15);
+}
+
+input::placeholder{
+    color:#9CA3AF;
+}
+
+.button{
+    background: #22C55E;
+    color: white;
+    border-radius: 12px;
+    padding: 14px;
+    margin-top: 24px;
+    font-weight: 600;
+    font-size: 16px;
+    border: none;
+    width: 100%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.button:hover{
+    background: #16A34A;
+    transform: translateY(-2px);
+}
+
+.password-container{
+    position: relative;
+      width: 100%;
+}
+
+.eye-icon{
+    position:absolute;
+    right:15px;
+    top:50%;
+     
+    transform: translateY(-50%);
+}
+.eye-icon:hover{
+    color: #16A34A;
+    
+}
+.password-container input{
+    width: 100%;
+    padding-right: 45px;   /* Makes room for the eye */
+}
+
+.eye-icon{
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #6B7280;
+}
+
+.foot{
+    display:flex;
+    justify-content:center;
+    gap:40px;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+.forgot{
+    text-decoration: none;
+    color:  #6B7280;
+    transform: translateY(-2px);
+}
+.forgot:hover{
+    color: #16A34A;
+    
+}
+
+
+.sign{
+    text-decoration: none;
+    color:  #6B7280;;
+    transform: translateY(2px);
+
+}
+.sign:hover{
+    color: #16A34A;
+}
+
+
+
+
+
+
+
+
+
+    
+
+#first {
+    stroke-dasharray: 50; /**this line means the length of the dash is 50 and if we make it 10 then it comes - - -  likem this instead of ----**/
+    stroke-dashoffset: 50; /* hiding the line */
+    animation: drawLine 0.5s ease forwards;   /*drawline function is called and it is said to animate for 0.5s in forward direction only  */
+}
+ @keyframes drawLine { /* in this we say we are going to animate */
+    to {  /*when the animation finishes  */
+         stroke-dashoffset: 0; /* revealing the line */
+    }
+}
+
+#left-middle{
+    opacity:0;
+    animation:showNode 0.2s forwards;
+    animation-delay:0.5s;
+}
+@keyframes showNode{
+    from{
+        opacity:0;
+    }
+
+    to{
+        opacity:1;
+    }
+}
+
+
+#second {
+    stroke-dasharray: 50; /**this line means the length of the dash is 50 and if we make it 10 then it comes - - -  likem this instead of ----**/
+    stroke-dashoffset: 50; /* hiding the line */
+    animation: drawLine 0.5s ease forwards;   /*drawline function is called and it is said to animate for 0.5s in forward direction only  */
+}
+ @keyframes drawLine { /* in this we say we are going to animate */
+    to {  /*when the animation finishes  */
+         stroke-dashoffset: 0; /* revealing the line */
+    }
+}
+
+#bottom-left{
+    opacity:0;
+    animation:showNode 0.2s forwards;
+    animation-delay:0.5s;
+}
+@keyframes showNode{
+    from{
+        opacity:0;
+    }
+
+    to{
+        opacity:1;
+    }
+}
+
+
+
+#third{
+    stroke-dasharray: 50; /**this line means the length of the dash is 50 and if we make it 10 then it comes - - -  likem this instead of ----**/
+    stroke-dashoffset: 50; /* hiding the line */
+    animation: drawLine 0.5s ease forwards;   /*drawline function is called and it is said to animate for 0.5s in forward direction only  */
+}
+ @keyframes drawLine { /* in this we say we are going to animate */
+    to {  /*when the animation finishes  */
+         stroke-dashoffset: 0; /* revealing the line */
+    }
+}
+
+#right-middle{
+    opacity:0;
+    animation:showNode 0.2s forwards;
+    animation-delay:0.5s;
+}
+@keyframes showNode{
+    from{
+        opacity:0;
+    }
+
+    to{
+        opacity:1;
+    }
+}
+
+
+#fourth{
+    stroke-dasharray: 50; /**this line means the length of the dash is 50 and if we make it 10 then it comes - - -  likem this instead of ----**/
+    stroke-dashoffset: 50; /* hiding the line */
+    animation: drawLine 0.5s ease forwards;   /*drawline function is called and it is said to animate for 0.5s in forward direction only  */
+}
+ @keyframes drawLine { /* in this we say we are going to animate */
+    to {  /*when the animation finishes  */
+         stroke-dashoffset: 0; /* revealing the line */
+    }
+}
+
+#bottom-right{
+    opacity:0;
+    animation:showNode 0.2s forwards;
+    animation-delay:0.5s;
+}
+@keyframes showNode{
+    from{
+        opacity:0;
+    }
+
+    to{
+        opacity:1;
+    }
+
+}
+
+#crossbar {
+    stroke-dasharray: 60;
+    stroke-dashoffset: 60;
+    animation: drawLine 0.5s ease forwards;
+    animation-delay:0.5s;
+}
+
+.flash-message{
+
+    padding:14px;
+
+    border-radius:10px;
+
+    margin-bottom:20px;
+
+    text-align:center;
+
+    font-weight:500;
+
+}
+
+.success{
+
+    background:#DCFCE7;
+
+    color:#166534;
+
+    border:1px solid #BBF7D0;
+
+}

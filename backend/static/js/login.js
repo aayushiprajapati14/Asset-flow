@@ -1,16 +1,16 @@
 function togglePassword(){
 
-let pass=document.getElementById("password");
+    let pass=document.getElementById("password"); //  "Go to the webpage and find the element whose id is password
 
-if(pass.type==="password")
+    if(pass.type==="password"){
 
-pass.type="text";
+        pass.type="text";
 
-else
+    }else {
 
-pass.type="password";
+        pass.type="password";}
 
-}
+    }   
 
 document
 .getElementById("loginForm")
@@ -18,7 +18,7 @@ document
 
 function(e){
 
-e.preventDefault();
+// e.preventDefault(); //Don't refresh yet
 
 let email=document.getElementById("email").value;
 

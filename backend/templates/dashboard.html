@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Asset Overview</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+    <body>
+        <div class="dashboard">
+
+            <aside class="sidebar"> <!--This is content beside the main content -->
+                <div class="logo">
+                    <svg                                      
+                        xmlns="http://www.w3.org/2000/svg"
+                    width="170"
+                        height="170"
+                        viewBox="0 0 220 220"> 
+                        <g id="lines">
+                        <line id = "first"
+                            x1= "110"
+                            y1 = "30"
+                            x2= "80"
+                            y2= "70"
+                            stroke = "#2E6F40"
+                            stroke-width = "3"
+                            stroke-linecap = "round" /> <!--a line whose start point is x1 y1 and endpouint is y1 y2-->
+                            <line id = "second"
+                            x1= "80"
+                            y1 = "70"
+                            x2= "60"
+                            y2= "110"
+                            stroke = "#2E6F40"
+                            stroke-width = "3"
+                            stroke-linecap = "round" />
+                            <line id ="third"
+                            x1= "110"
+                            y1 = "30"
+                            x2= "140"
+                            y2= "70"
+                            stroke = "#2E6F40"
+                            stroke-width = "3"
+                            stroke-linecap = "round" />
+                            <line id = "fourth"
+                            x1= "140"
+                            y1 = "70"
+                            x2= "160"
+                            y2= "110"
+                            stroke = "#2E6F40"
+                            stroke-width = "3"
+                            stroke-linecap = "round" />
+                            <line id = "crossbar"
+                            x1= "140"
+                            y1 = "70"
+                            x2= "80"
+                            y2= "70"
+                            stroke = "#2E6F40"
+                            stroke-width = "3"
+                            stroke-linecap = "round" />
+                        </g>
+                        <g id="nodes">
+                        <circle id = "top"
+                        cx="110"   
+                        cy="30"
+                        r="6"
+                        fill="#2E6F40"/>
+                        <!--cx-centre xcordinate cy- centre ycoordinate which means our circle ka centre has coordinates 110,30 adn r is the radoius of circle -->
+                        <circle id = "left-middle"
+                        cx="80"   
+                        cy="70"
+                        r="6"
+                        fill="#2E6F40"/>
+                        <circle id = "right-middle"
+                        cx="140"   
+                        cy="70"
+                        r="6"
+                        fill="#2E6F40"/>
+                        <circle id = "bottom-left"
+                        cx="60"   
+                        cy="110"
+                        r="6"
+                        fill="#2E6F40"/>
+                        <circle id= "bottom-right"
+                        cx="160"   
+                        cy="110"
+                        r="6"
+                        fill="#2E6F40"/>
+                        </g>
+                </svg>
+                   <h2> AssetFlow</h2>
+                </div>
+
+                <nav>
+
+                    <a href="/dashboard" class="nav-link">🏠Dashboard</a>
+                    <a href = "/assets" class= "nav-link">📦 Assets </a>
+
+                    <a href="/booking" class="nav-link"> 📅 Booking</a>
+
+                    <a href="/maintenance" class="nav-link">🔧Maintenance</a>
+
+                    <a href="/audit" class="nav-link"> 📊Audit</a>
+
+                  
+
+                </nav>
+                  <a href="/logout" class="nav-link logout">🚪Logout</a>
+
+            </aside>
+
+            <main class="main-content">
+
+                <section class="greeting">
+                    <h1>Good Evening, Aayushi 👋</h1>
+
+                    <p>
+                        Welcome back to AssetFlow. Here's an overview of your organization's assets today.
+                    </p>
+
+
+                </section>
+
+                <section class="stats">
+                    <div class="stat-card">
+                       
+                        <div class="icon">
+                            💻
+                        </div>
+
+                        <h3>Total Assets</h3>
+
+                        <h2>142</h2>
+
+                        <p>↑ +12 this month</p>
+                    </div>
+
+                    <div class="stat-card">
+                       <div class="icon"> 👥 </div>
+                       <h3> Active Employees</h3>
+                        <h2>  58 </h2>
+                        <p> +3 joined this month</p> 
+                    </div>
+
+                    <div class="stat-card">
+                        <div class = "icon">🔧 </div>
+                        <h3>Pending Maintenance</h3>
+
+                           <h2>12</h2> 
+                           <p>2 High Priority</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class = "icon">📅 </div>
+                           <h3>Today's Bookings</h3> 
+                          <h3>8</h3>
+
+                        <p> 5 Upcoming</p>
+                    </div>
+
+                </section>
+
+                
+
+                <section class="recent-assets">
+                    <div class="analytics-card">
+
+                        <div class="analytics-header">
+                            <div>
+                                <h3>Asset Activity</h3>
+                                <p>Asset movement over the last 6 months</p>
+                            </div>
+                        </div>
+
+                        <div class="chart-area">
+                            <div class="chart-placeholder">
+                                 <canvas id="assetActivityChart"></canvas><!--an empty drawing board. -->
+                            </div>
+                        </div>
+
+                    </div>
+
+                </section>
+                <section class="ai-insights">
+
+                        <div class="ai-header">
+                            <span>✨</span>
+                            <div>
+                                <h3>AI Insights</h3>
+                                <p>Smart observations from your asset activity</p>
+                            </div>
+                        </div>
+
+                        <div class="insight-content">
+
+                            <div class="insight-item">
+                                <span>●</span>
+                                <p>Asset activity is trending upward this month.</p>
+                            </div>
+
+                            <div class="insight-item">
+                                <span>●</span>
+                                <p>2 high-priority maintenance tasks need attention.</p>
+                            </div>
+
+                            <div class="insight-item">
+                                <span>●</span>
+                                <p>Asset additions increased compared with last month.</p>
+                            </div>
+
+                        </div>
+
+                    </section>
+
+            </main>
+
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <!-- Browser, go to this location and load the JavaScript found there. -->
+    
+         <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+    </body>
+
+</html>

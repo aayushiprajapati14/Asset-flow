@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Asset flow</title>
+        <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AssetFlow</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/landing.css') }}">
+   
+</head>
+
+<body>
+    <div class="bg-animation">
+            <div class="flow-line"></div> <!--line 1-->
+            <div class="flow-line"></div> <!--line 2-->
+            <div class="flow-line"></div> <!-----line 3---->
+            <div class="flow-line"></div> <!--line 4-->
+           <div class="flow-line"></div> <!-- line 5-->
+        </div>
+    
+    <section class="hero">
+        <div class="hero-card">
+            <div class="logo">
+                <svg                                      
+                xmlns="http://www.w3.org/2000/svg"
+                 width="220"
+                height="220"
+                viewBox="0 0 220 220"> 
+    <!--svg is the opening tag xmlns tells to follow svg rules width height is mentioned for logo and viewport means the cooordiante axis is amde weher are logo will be placed-->
+        
+        
+        <g id="lines">
+            <line id = "first"
+                x1= "110"
+                y1 = "30"
+                x2= "80"
+                y2= "70"
+                stroke = "#2E6F40"
+                stroke-width = "3"
+                stroke-linecap = "round" /> <!--a line whose start point is x1 y1 and endpouint is y1 y2-->
+                <line id = "second"
+                x1= "80"
+                y1 = "70"
+                x2= "60"
+                y2= "110"
+                stroke = "#2E6F40"
+                stroke-width = "3"
+                stroke-linecap = "round" />
+                <line id ="third"
+                x1= "110"
+                y1 = "30"
+                x2= "140"
+                y2= "70"
+                stroke = "#2E6F40"
+                stroke-width = "3"
+                stroke-linecap = "round" />
+                <line id = "fourth"
+                x1= "140"
+                y1 = "70"
+                x2= "160"
+                y2= "110"
+                stroke = "#2E6F40"
+                stroke-width = "3"
+                stroke-linecap = "round" />
+                <line id = "crossbar"
+                x1= "140"
+                y1 = "70"
+                x2= "80"
+                y2= "70"
+                stroke = "#2E6F40"
+                stroke-width = "3"
+                stroke-linecap = "round" />
+            </g>
+            <g id="nodes">
+            <circle id = "top"
+            cx="110"   
+            cy="30"
+            r="6"
+            fill="#2E6F40"/>
+            <!--cx-centre xcordinate cy- centre ycoordinate which means our circle ka centre has coordinates 110,30 adn r is the radoius of circle -->
+            <circle id = "left-middle"
+            cx="80"   
+            cy="70"
+            r="6"
+            fill="#2E6F40"/>
+            <circle id = "right-middle"
+            cx="140"   
+            cy="70"
+            r="6"
+            fill="#2E6F40"/>
+            <circle id = "bottom-left"
+            cx="60"   
+            cy="110"
+            r="6"
+            fill="#2E6F40"/>
+            <circle id= "bottom-right"
+            cx="160"   
+            cy="110"
+            r="6"
+            fill="#2E6F40"/>
+             </g>
+        
+
+                </svg>
+            </div>
+        
+            <div class="hero_contents">
+            <h1 class="hero_title"> AssetFlow </h1>
+            <h2 class = " hero_tagline">Keep Things Moving</h2>
+            <p class = "hero_sub">Smart Asset Management for Modern Organisations</p>
+            </div>
+            <div class="hero_buttons">
+                <a href="{{url_for('login_page')}}" class = "login_btn">Login </a>
+                <a href="{{url_for('signup_page')}}" class = "get_started">Get Started <span class="arrow">⟶</span></a>
+            </div>
+        </div>
+    </section>
+</body>
+
+
+
+
+
+</html>
