@@ -10,198 +10,410 @@
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+<link rel="stylesheet" href="{{ url_for('static', filename='css/audit.css') }}">
 </head>
 
 <body>
 
-<div class="sidebar">
+<div class = "dashboard">
+    <div class="sidebar">
 
-<div class="logo">AssetFlow ERP</div>
 
-<ul>
 
-<li><a href="dashboard.html"><i class="fa fa-chart-line"></i> Dashboard</a></li>
+    <div class="logo">
+                    <svg                                      
+                        xmlns="http://www.w3.org/2000/svg"
+                    width="170"
+                        height="170"
+                        viewBox="0 0 220 220"> 
+                        <g id="lines">
+                        <line id = "first"
+                            x1= "110"
+                            y1 = "30"
+                            x2= "80"
+                            y2= "70"
+                            stroke = "#2E6F40"
+                            stroke-width = "3"
+                            stroke-linecap = "round" /> <!--a line whose start point is x1 y1 and endpouint is y1 y2-->
+                            <line id = "second"
+                            x1= "80"
+                            y1 = "70"
+                            x2= "60"
+                            y2= "110"
+                            stroke = "#2E6F40"
+                            stroke-width = "3"
+                            stroke-linecap = "round" />
+                            <line id ="third"
+                            x1= "110"
+                            y1 = "30"
+                            x2= "140"
+                            y2= "70"
+                            stroke = "#2E6F40"
+                            stroke-width = "3"
+                            stroke-linecap = "round" />
+                            <line id = "fourth"
+                            x1= "140"
+                            y1 = "70"
+                            x2= "160"
+                            y2= "110"
+                            stroke = "#2E6F40"
+                            stroke-width = "3"
+                            stroke-linecap = "round" />
+                            <line id = "crossbar"
+                            x1= "140"
+                            y1 = "70"
+                            x2= "80"
+                            y2= "70"
+                            stroke = "#2E6F40"
+                            stroke-width = "3"
+                            stroke-linecap = "round" />
+                        </g>
+                        <g id="nodes">
+                        <circle id = "top"
+                        cx="110"   
+                        cy="30"
+                        r="6"
+                        fill="#2E6F40"/>
+                        <!--cx-centre xcordinate cy- centre ycoordinate which means our circle ka centre has coordinates 110,30 adn r is the radoius of circle -->
+                        <circle id = "left-middle"
+                        cx="80"   
+                        cy="70"
+                        r="6"
+                        fill="#2E6F40"/>
+                        <circle id = "right-middle"
+                        cx="140"   
+                        cy="70"
+                        r="6"
+                        fill="#2E6F40"/>
+                        <circle id = "bottom-left"
+                        cx="60"   
+                        cy="110"
+                        r="6"
+                        fill="#2E6F40"/>
+                        <circle id= "bottom-right"
+                        cx="160"   
+                        cy="110"
+                        r="6"
+                        fill="#2E6F40"/>
+                        </g>
+                </svg>
+                   <h2> AssetFlow</h2>
+        </div>
 
-<li><a href="organization.html"><i class="fa fa-building"></i> Organization Setup</a></li>
+        <nav>
 
-<li><a href="assets.html"><i class="fa fa-box"></i> Asset Management</a></li>
+                    <a href="/dashboard" class="nav-link">Dashboard</a>
+                    <a href = "/assets" class= "nav-link">Assets </a>
 
-<li><a href="booking.html"><i class="fa fa-calendar-check"></i> Resource Booking</a></li>
+                    <a href="/booking" class="nav-link"> Booking</a>
 
-<li><a href="maintenance.html"><i class="fa fa-screwdriver-wrench"></i> Maintenance</a></li>
+                    <a href="/maintenance" class="nav-link">Maintenance</a>
 
-<li class="active"><a href="audit.html"><i class="fa fa-clipboard-check"></i> Audit</a></li>
+                    <a href="/audit" class="nav-link"> Audit</a>
 
-<li><a href="login.html"><i class="fa fa-right-from-bracket"></i> Logout</a></li>
+                  
 
-</ul>
+                </nav>
+                  <a href="/logout" class="nav-link logout">Logout</a>
+        </div>
+        <div class="main-content">
+                <div class="container-fluid p-4">
 
+    <!-- HEADER -->
+    <div class="page-header d-flex justify-content-between align-items-center flex-wrap gap-3">
+        <div>
+            <h2 class="fw-bold mb-2">Asset Verification Audit</h2>
+            <p class="mb-0 opacity-75">
+                Track, inspect and verify physical assets across departments.
+            </p>
+        </div>
+
+        <button class="btn btn-light fw-semibold"
+                data-bs-toggle="modal"
+                data-bs-target="#auditModal"
+                onclick="clearAuditForm()">
+            + Schedule Audit
+        </button>
+    </div>
+
+
+    <!-- SUMMARY CARDS -->
+    <div class="row g-3 mb-4">
+
+        <div class="col-md-4">
+            <div class="card stat-card p-3">
+                <div class="muted-text">Total Audits</div>
+                <div class="stat-number">{{ audits|length }}</div>
+                <div class="muted-text">All scheduled audits</div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card stat-card p-3">
+                <div class="muted-text">Completed Audits</div>
+                <div class="stat-number text-success">
+                    {{ audits|selectattr("Status", "equalto", "Completed")|list|length }}
+                </div>
+                <div class="muted-text">Verification finished</div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card stat-card p-3">
+                <div class="muted-text">Pending / In Progress</div>
+                <div class="stat-number text-warning">
+                    {{ audits|rejectattr("Status", "equalto", "Completed")|list|length }}
+                </div>
+                <div class="muted-text">Audits requiring attention</div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- AUDIT TABLE -->
+    <div class="card content-card p-3">
+
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-3">
+            <div>
+                <h5 class="fw-bold mb-1">Scheduled Audits</h5>
+                <p class="muted-text mb-0">
+                    Manage and monitor department inspections.
+                </p>
+            </div>
+
+            <input type="text"
+                   id="auditSearch"
+                   class="form-control"
+                   placeholder="Search audits..."
+                   style="max-width: 250px;"
+                   onkeyup="searchAudit()">
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead>
+                    <tr>
+                        <th>Audit ID</th>
+                        <th>Department</th>
+                        <th>Auditor</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Discrepancy</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody id="auditTable">
+
+                    {% for a in audits %}
+                    <tr>
+                        <td>#{{ a["AuditID"] }}</td>
+                        <td class="fw-semibold">{{ a["Department"] }}</td>
+                        <td>{{ a["Auditor"] }}</td>
+                        <td>{{ a["AuditDate"] }}</td>
+
+                        <td>
+                            {% if a["Status"] == "Completed" %}
+                                <span class="badge bg-success">Completed</span>
+                            {% elif a["Status"] == "In Progress" %}
+                                <span class="badge bg-warning text-dark">In Progress</span>
+                            {% else %}
+                                <span class="badge bg-primary">Scheduled</span>
+                            {% endif %}
+                        </td>
+
+                        <td>{{ a["Discrepancy"] or "-" }}</td>
+
+                        <td>
+                            <div class="d-flex flex-wrap gap-1">
+
+                                {% if a["Status"] != "Completed" %}
+                                <a href="{{ url_for('audit_assets', audit_id=a['AuditID']) }}"
+                                   class="btn btn-sm btn-verify">
+                                    Verify
+                                </a>
+                                {% else %}
+                                <a href="{{ url_for('audit_results', audit_id=a['AuditID']) }}"
+                                   class="btn btn-sm btn-outline-success">
+                                    Report
+                                </a>
+                                {% endif %}
+
+                                <button class="btn btn-sm btn-outline-secondary edit-audit-btn"
+                                        data-id="{{ a['AuditID'] }}"
+                                        data-department="{{ a['Department'] }}"
+                                        data-auditor="{{ a['Auditor'] }}"
+                                        data-date="{{ a['AuditDate'] }}"
+                                        data-status="{{ a['Status'] }}"
+                                        data-discrepancy="{{ a['Discrepancy'] or '' }}">
+                                    Edit
+                                </button>
+
+                                <form method="POST"
+                                      action="{{ url_for('delete_audit', audit_id=a['AuditID']) }}"
+                                      onsubmit="return confirm('Delete this audit?');">
+                                    <button class="btn btn-sm btn-outline-danger">
+                                        Delete
+                                    </button>
+                                </form>
+
+                            </div>
+                        </td>
+                    </tr>
+
+                    {% else %}
+                    <tr>
+                        <td colspan="7" class="text-center text-muted py-5">
+                            No audits scheduled yet. Click Schedule Audit to begin.
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
 </div>
 
-<div class="main">
 
-<div class="topbar">
+<!-- ADD / EDIT AUDIT MODAL -->
+<div class="modal fade" id="auditModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
 
-<h2>Audit Management</h2>
+            <form id="auditForm"
+                  method="POST"
+                  action="{{ url_for('add_audit') }}">
 
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold" id="auditModalTitle">
+                        Schedule New Audit
+                    </h5>
+                    <button type="button" class="btn-close"
+                            data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="mb-3">
+                        <label class="form-label">Department</label>
+                        <input type="text" name="department"
+                               id="auditDepartment"
+                               class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Auditor</label>
+                        <input type="text" name="auditor"
+                               id="auditAuditor"
+                               class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Audit Date</label>
+                        <input type="date" name="auditDate"
+                               id="auditDate"
+                               class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Status</label>
+                        <select name="status" id="auditStatus"
+                                class="form-select" required>
+                            <option value="Scheduled">Scheduled</option>
+                            <option value="In Progress">In Progress</option>
+                            <option value="Completed">Completed</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Discrepancy / Notes</label>
+                        <textarea name="discrepancy"
+                                  id="auditRemark"
+                                  class="form-control"
+                                  rows="3"
+                                  placeholder="Optional notes..."></textarea>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light"
+                            data-bs-dismiss="modal">Cancel</button>
+
+                    <button type="submit" class="btn btn-primary">
+                        Save Audit
+                    </button>
+                </div>
+
+            </form>
+                    
+        </div>
+    </div>
 </div>
 
-<div class="content">
-
-<div class="card-box">
-
-<div class="d-flex justify-content-between mb-3">
-
-<input
-id="auditSearch"
-class="form-control w-25"
-placeholder="Search Audit"
-onkeyup="searchAudit()">
-
-<button
-class="btn btn-primary"
-data-bs-toggle="modal"
-data-bs-target="#auditModal"
-onclick="clearAuditForm()">
-
-<i class="fa fa-plus"></i>
-
-Schedule Audit
-
-</button>
-
-</div>
-
-<table class="table table-bordered table-hover">
-
-<thead class="table-dark">
-
-<tr>
-
-<th>Audit ID</th>
-
-<th>Department</th>
-
-<th>Auditor</th>
-
-<th>Date</th>
-
-<th>Status</th>
-
-<th>Discrepancy</th>
-
-<th width="150">Action</th>
-
-</tr>
-
-</thead>
-
-<tbody id="auditTable">
-
-</tbody>
-
-</table>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- Modal -->
-
-<div class="modal fade" id="auditModal">
-
-<div class="modal-dialog">
-
-<div class="modal-content">
-
-<div class="modal-header">
-
-<h5>Schedule Audit</h5>
-
-<button class="btn-close" data-bs-dismiss="modal"></button>
-
-</div>
-
-<div class="modal-body">
-
-<div class="mb-3">
-
-<label>Department</label>
-
-<input id="auditDepartment" class="form-control">
-
-</div>
-
-<div class="mb-3">
-
-<label>Auditor</label>
-
-<input id="auditAuditor" class="form-control">
-
-</div>
-
-<div class="mb-3">
-
-<label>Audit Date</label>
-
-<input type="date" id="auditDate" class="form-control">
-
-</div>
-
-<div class="mb-3">
-
-<label>Status</label>
-
-<select id="auditStatus" class="form-select">
-
-<option>Scheduled</option>
-<option>In Progress</option>
-<option>Completed</option>
-
-</select>
-
-</div>
-
-<div class="mb-3">
-
-<label>Discrepancy</label>
-
-<textarea id="auditRemark" class="form-control"></textarea>
-
-</div>
-
-</div>
-
-<div class="modal-footer">
-
-<button class="btn btn-secondary" data-bs-dismiss="modal">
-
-Cancel
-
-</button>
-
-<button class="btn btn-primary" onclick="saveAudit()">
-
-Save
-
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<script src="js/audit.js"></script>
+<script>
+    const auditModalElement = document.getElementById("auditModal");
+    const auditModal = new bootstrap.Modal(auditModalElement);
 
-</body>
+    function clearAuditForm() {
+        document.getElementById("auditForm").action =
+            "{{ url_for('add_audit') }}";
 
+        document.getElementById("auditModalTitle").innerText =
+            "Schedule New Audit";
+
+        document.getElementById("auditForm").reset();
+        document.getElementById("auditStatus").value = "Scheduled";
+    }
+
+    document.querySelectorAll(".edit-audit-btn").forEach(button => {
+        button.addEventListener("click", function () {
+
+            const id = this.dataset.id;
+
+            document.getElementById("auditForm").action =
+                "/edit_audit/" + id;
+
+            document.getElementById("auditModalTitle").innerText =
+                "Edit Audit";
+
+            document.getElementById("auditDepartment").value =
+                this.dataset.department;
+
+            document.getElementById("auditAuditor").value =
+                this.dataset.auditor;
+
+            document.getElementById("auditDate").value =
+                this.dataset.date;
+
+            document.getElementById("auditStatus").value =
+                this.dataset.status;
+
+            document.getElementById("auditRemark").value =
+                this.dataset.discrepancy;
+
+            auditModal.show();
+        });
+    });
+
+    function searchAudit() {
+        const search = document.getElementById("auditSearch")
+            .value.toLowerCase();
+
+        document.querySelectorAll("#auditTable tr").forEach(row => {
+            row.style.display =
+                row.innerText.toLowerCase().includes(search) ? "" : "none";
+        });
+    }
+</script>
+
+</div>
 </html>

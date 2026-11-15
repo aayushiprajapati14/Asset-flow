@@ -218,5 +218,12 @@ row.style.display=row.innerText.toLowerCase().includes(text)?"":"none";
 });
 
 }
+function openBookingModal() {
+    document.getElementById("bookingModal").style.display = "flex";
+}
+
+function closeBookingModal() {
+    document.getElementById("bookingModal").style.display = "none";
+}
 
 window.onload=loadBookings;
